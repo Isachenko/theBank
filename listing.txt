@@ -1,0 +1,7 @@
+
+bool Account::checkPassword(std::string* password){
+    if (0 == this->password.compare(*password)){
+        return true;
+    }
+    return false;
+}
