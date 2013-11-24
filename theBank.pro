@@ -5,7 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     bank.cpp \
-    account.cpp
+    account.cpp \
+    saveAccount.cpp \
+    timedMaturityAccaount.cpp \
+    checkingAccount.cpp \
+    overdraftAccount.cpp
 
 HEADERS += \
     bank.h \

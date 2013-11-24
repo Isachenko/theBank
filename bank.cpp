@@ -21,8 +21,3 @@ Account* Bank::getByLoginPassword(std::string* login, std::string* password ){
     return NULL;
 }
 
-void Bank::increaseBalanceForAll(){
-    for(Account* acc: accounts){
-        acc->increaseMoney();
-    }
-}

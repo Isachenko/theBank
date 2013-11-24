@@ -21,6 +21,8 @@ void balanceAccess(Bank& bank){
         while (true){
             printf("0 - cancel\n");
             printf("1 - show balance\n");
+            printf("2 - put $100\n");
+            printf("3 - withdraw $100\n");
             printf("operation: ");
             short int opNum;
             scanf("%d", &opNum);
@@ -31,6 +33,18 @@ void balanceAccess(Bank& bank){
             {
                 double bal = accaunt->getBalance();
                 printf("your balance: %lf\n", bal);
+                break;
+            }
+            case 2:
+            {
+                double money = accaunt->putMoney(100);
+                printf("your put: %lf dollars\n", money);
+                break;
+            }
+            case 3:
+            {
+                double money = accaunt->withdrawMoney(100);
+                printf("your get: %lf dollars\n", money);
                 break;
             }
             default:
@@ -50,9 +64,9 @@ void balanceAccess(Bank& bank){
 
 int main()
 {
-    Account* acc1 = new Account(std::string("Petrov"), std::string("123"), 100, 0.01);
-    Account* acc2 = new Account(std::string("Ivanov"), std::string("abc"), 50, 0.02);
-    Account* acc3 = new Account(std::string("Isachenko"), std::string("q"), 40, 0.03);
+    Account* acc1 = new Account(std::string("Petrov"), std::string("123"), 100);
+    Account* acc2 = new Account(std::string("Ivanov"), std::string("abc"), 50);
+    Account* acc3 = new Account(std::string("Isachenko"), std::string("q"), 40);
 
     Bank bank;
     bank.addAccount(acc1);
@@ -61,8 +75,7 @@ int main()
 
     while (true){
         printf("0 - exit\n");
-        printf("1 - wait one year\n");
-        printf("2 - get access to account\n");
+        printf("1 - get access to account\n");
         printf("Operation: ");
         short int opNum;
         scanf("%d", &opNum);
@@ -71,9 +84,6 @@ int main()
             return 0;
             break;
         case 1:
-            bank.increaseBalanceForAll();
-            break;
-        case 2:
             balanceAccess(bank);
             break;
         default:

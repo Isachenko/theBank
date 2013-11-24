@@ -1,19 +1,27 @@
 #include "account.h"
 
-Account::Account(std::string login, std::string password, double money, double percent)
+Account::Account(std::string login, std::string password, double money)
 {
     this->login = login;
     this->password = password;
     this->money = money;
-    this->percent = percent;
 }
 
-void Account::increaseMoney(){
-    money += money*percent;
+double Account::putMoney(double money){
+    this->money += money;
+    return money;
 }
 
-void Account::decreaseMoney(){
-    money -= money*percent;
+double Account::withdrawMoney(double money){
+    if (this->money < money){
+        return 0;
+    }
+    this->money -= money;
+    return money;
+}
+
+double Account::getBalance(){
+    return money;
 }
 
 
@@ -28,6 +36,3 @@ bool Account::checkPassword(std::string* password){
     return false;
 }
 
-double Account::getBalance(){
-    return money;
-}
