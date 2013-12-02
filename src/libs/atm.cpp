@@ -1,10 +1,20 @@
-//#include <iostream>
-#include "account.h"
-#include "bank.h"
+#include "atm.h"
 
 using namespace std;
 
-void balanceAccess(Bank& bank){
+ATM::ATM(){
+    Account* acc1 = new SaveAccount(std::string("Petrov"), std::string("123"), 100, 0.05);
+    Account* acc2 = new CheckingAccount(std::string("Ivanov"), std::string("abc"), 50, 2, 10);
+    Account* acc3 = new Account(std::string("Isachenko"), std::string("q"), 40);
+
+    bank.addAccount(acc1);
+    bank.addAccount(acc2);
+    bank.addAccount(acc3);
+}
+
+
+
+void ATM::balanceAccess(){
     char login[20];
     char password[20];
     printf("Enter Login: ");
@@ -21,8 +31,8 @@ void balanceAccess(Bank& bank){
         while (true){
             printf("0 - cancel\n");
             printf("1 - show balance\n");
-            printf("2 - put $100\n");
-            printf("3 - withdraw $100\n");
+            printf("2 - put $10\n");
+            printf("3 - withdraw $10\n");
             printf("operation: ");
             short int opNum;
             scanf("%d", &opNum);
@@ -37,7 +47,7 @@ void balanceAccess(Bank& bank){
             }
             case 2:
             {
-                double money = accaunt->putMoney(100);
+                double money = accaunt->putMoney(10);
                 printf("your put: %lf dollars\n", money);
                 break;
             }
@@ -56,22 +66,11 @@ void balanceAccess(Bank& bank){
     }else{
         printf("access denied\n");
     }
-
-
 }
 
 
-
-int main()
+void ATM::start()
 {
-    Account* acc1 = new Account(std::string("Petrov"), std::string("123"), 100);
-    Account* acc2 = new Account(std::string("Ivanov"), std::string("abc"), 50);
-    Account* acc3 = new Account(std::string("Isachenko"), std::string("q"), 40);
-
-    Bank bank;
-    bank.addAccount(acc1);
-    bank.addAccount(acc2);
-    bank.addAccount(acc3);
 
     while (true){
         printf("0 - exit\n");
@@ -81,10 +80,10 @@ int main()
         scanf("%d", &opNum);
         switch(opNum){
         case 0:
-            return 0;
+            return;
             break;
         case 1:
-            balanceAccess(bank);
+            balanceAccess();
             break;
         default:
             printf("wrong operation");
